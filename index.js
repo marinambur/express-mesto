@@ -1,11 +1,10 @@
-
 //const fs = require('fs').promises;
 
 //const readFile = (file) => fs.readFile(file);
 
-
+const router = require('express').Router();
 //module.exports = {
- // readFile
+// readFile
 //}
 const users = require('./data/users.json');
 const cards = require('./data/cards.json');
@@ -16,7 +15,7 @@ const app = express();
 //const usersRouter = require('./routes/users');
 //const { usersRouter} = require('./routes/');
 // Слушаем 3000 порт
-const { PORT = 3000 } = process.env;
+const {PORT = 3000} = process.env;
 //app.use('/users', usersRouter);
 //app.use('/cards', cardsRouter);
 /*app.use((req, res) => {
@@ -26,9 +25,21 @@ const { PORT = 3000 } = process.env;
 });*/
 app.get('/users', (req, res) => {
   res.send(
-    users
+    //JSON.parse(JSON.stringify(users))
+    users.find(element => element._id === '8340d0ec33270a25f2413b69')
+
+//  const usersID = JSON.parse(users).find(user) => user._id ===req.params.id
   );
 });
+
+
+app.get('/users/:id', (req, res) => {
+  const {id} = req.params
+
+  return res.send({error: 'Такого пользователя нет'});
+
+});
+
 
 app.get('/cards', (req, res) => {
   res.send(
@@ -39,8 +50,8 @@ app.get('/cards', (req, res) => {
 app.use(express.static(__dirname + '/public'));
 //app.use('/', routes);
 app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}`)
+  console.log(`App listening on port ${PORT}`)
 })
-
+module.exports = router;
 
 
