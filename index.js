@@ -20,7 +20,7 @@ const {PORT = 3000} = process.env;
 //app.use('/cards', cardsRouter);
 /*app.use((req, res) => {
   res
-    .status(404)
+    .status(40
     .send({ message: 'Ошибка. Ресурс не найден' });
 });*/
 app.get('/users', (req, res) => {
