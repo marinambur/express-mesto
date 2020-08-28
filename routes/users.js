@@ -1,4 +1,4 @@
-const users = require('express').Router();
+/*const users = require('express').Router();
 const path = require('path');
 const { readFile } = require('../index')
 const fs = require('fs');
@@ -10,8 +10,27 @@ const express = require('express');
   res.send(
     users
   );
+  */
+  /*app.get('/users', (req, res) => {
+  res.send(
+    users
+  );
 });*/
-/*const getAllUsers = (req, res) => {
+const express = require('express');
+
+const usersRouter = express.Router();
+const fs = require('fs').promises;
+const userJson = require('../data/users.json');
+const readFile = (file) => fs.readFile(file);
+
+module.exports = {
+  readFile,
+};
+
+
+module.exports = usersRouter;
+
+const getAllUsers = (req, res) => {
   readFile(userJson)
     .then((data) => res
       .status(200)
@@ -19,13 +38,14 @@ const express = require('express');
     .catch((error) => res
       .status(500)
       .send({ message: `An error has occurred ${error}` }));
-};*/
+};
 
 //usersRouter.get('/:id', getUser);
+//usersRouter.get('/', getAllUsers);
+
 usersRouter.get('/', getAllUsers);
-
-
-module.exports = usersRouter;
+module.exports = getAllUsers();
+module.exports = usersRouter();
 
 
 /*users.get('/', (req, res) => {
