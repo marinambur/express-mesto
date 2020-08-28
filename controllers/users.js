@@ -2,6 +2,7 @@ const path = require('path');
 const {
   getFile,
 } = require('../helpers');
+
 const users = path.join(__dirname, '..', 'data', 'users.json');
 const getUsers = (req, res) => {
   getFile(users)
