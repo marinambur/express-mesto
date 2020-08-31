@@ -1,20 +1,58 @@
-const path = require('path');
-const {
-  getFile,
-} = require('../helpers');
+const Card = require('../models/card');
 
-const cards = path.join(__dirname, '..', 'data', 'cards.json');
+const createCard = (req, res) => {
+  const {name, link} = req.body;
+  Card.create({name, link})
+    .then(card => res.send(card))
+    .catch((err) => console.log(err))
+    //.catch(() => res.status(500).send({message: 'Произошла ошибка'}));
+};
+
 const getCards = (req, res) => {
-  getFile(cards)
-    .then((data) => res
-      .status(200)
-      .send(JSON.parse(data)))
-    .catch((error) => res
+  Card.find({})
+    .then(cards => res.send(cards))
+    .catch(() => res.status(500).send({message: 'Произошла ошибка'}));
+};
+
+
+const deleteCardById = (req, res) => {
+  console.log(req.params.id)
+  Card.findById(req.params.id)
+    .then((card) => {
+      if (card) {
+        res.send(card);
+        return;
+      }
+      res.status(404).send({message: "Нет такого пользoвателя"});
+    })
+    .catch((err) => res
       .status(500)
       .send({
-        message: `Произошла ошибка: ${error}`,
+        message: `Произошла ошибка: ${err}`,
       }));
 };
-module.exports = {
-  getCards,
+
+const getCardById = (req, res) => {
+  Card.findById(req.params.id)
+    .then((card) => {
+      console.log(card);
+      if (card) {
+        res.send(card);
+        return;
+      }
+      res.status(404).send({message: "Нет такого пользoвателя"});
+    })
+    .catch((err) => res
+      .status(500)
+      .send({
+        message: `Произошла ошибка: ${err}`,
+      }));
 };
+
+module.exports = {
+  createCard,
+  getCards,
+  deleteCardById,
+  getCardById
+};
+
