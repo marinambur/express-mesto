@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
   avatar: {
     type: String,
     required: true,
-    match: [/^((http|https):\/\/)(www\.)?([a-zA-z0-9.-]+)\.([a-zA-z]+)([a-zA-z0-9%$?/.-]+)?(#)?$/, 'Вставьте ссылку на картинку']
+    match: [/^((http|https):\/\/)(www\.)?([a-zA-z0-9.-]+)\.([a-zA-z]+)([a-zA-z0-9%$?/.-]+)?(#)?$/, 'Вставьте ссылку на картинку'],
   },
 }, { versionKey: false });
 

@@ -24,35 +24,10 @@
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/cards.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/cards.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/cards.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/users.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/models/card.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/card.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/asset-manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/logo512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/precache-manifest.ba4222c98ef0d3a6a42ba9f90b096af9.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/service-worker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/css/main.cb861d9c.chunk.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/css/main.cb861d9c.chunk.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/js/2.90e62d99.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/js/2.90e62d99.chunk.js.LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/js/2.90e62d99.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/js/main.71625abc.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/js/main.71625abc.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/js/runtime-main.b77ca3e9.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/js/runtime-main.b77ca3e9.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/media/Trash.4220563a.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/media/avatar_edit.d476a8b8.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/media/crest.5df32a06.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/media/heart.a8acc871.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/media/logo.c6f11019.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/media/pensil123.b05083e5.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/static/media/plus.b2fce4ac.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/cards.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/cards.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +77,8 @@
       <workItem from="1598518228004" duration="13000" />
       <workItem from="1598727804502" duration="9746000" />
       <workItem from="1598883688771" duration="8235000" />
-      <workItem from="1598954333055" duration="1977000" />
+      <workItem from="1598954333055" duration="2332000" />
+      <workItem from="1598990999847" duration="232000" />
     </task>
     <servers />
   </component>
