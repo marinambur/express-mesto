@@ -1,43 +1,37 @@
-const path = require('path');
-const {
-  getFile,
-} = require('../helpers');
+const User = require('../models/user');
 
-const users = path.join(__dirname, '..', 'data', 'users.json');
-const getUsers = (req, res) => {
-  getFile(users)
-    .then((data) => res
-      .status(200)
-      .send(JSON.parse(data)))
-    .catch((error) => res
-      .status(500)
-      .send({
-        message: `Произошла ошибка: ${error}`,
-      }));
+const createUser = (req, res) => {
+  const {name, about, avatar} = req.body;
+  User.create({name, about, avatar})
+    .then(user => res.send(user))
+    .catch(() => res.status(500).send({message: 'Произошла ошибка'}));
 };
+
+const getUsers = (req, res) => {
+  User.find({})
+    .then(users => res.send(users))
+    .catch(() => res.status(500).send({message: 'Произошла ошибка'}));
+};
+
+
 const getUserById = (req, res) => {
-  getFile(users)
-    .then((data) => {
-      const exactUser = JSON.parse(data).find((user) => user._id === req.params.id);
-      if (!exactUser) {
-        res
-          .status(404)
-          .send({
-            message: 'Нет пользователя с таким id',
-          });
+  User.findById(req.params.id)
+    .then((user) => {
+      if (user) {
+        res.send(user);
+        return;
       }
-      res
-        .status(200)
-        .send(exactUser);
+      res.status(404).send({message: "Нет такого пользoвателя"});
     })
-    .catch((error) => res
+    .catch((err) => res
       .status(500)
       .send({
-        message: `Произошла ошибка: ${error}`,
+        message: `Произошла ошибка: ${err}`,
       }));
 };
 
 module.exports = {
+  createUser,
   getUsers,
-  getUserById,
+  getUserById
 };
