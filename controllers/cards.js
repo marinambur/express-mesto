@@ -4,8 +4,7 @@ const createCard = (req, res) => {
   const {name, link} = req.body;
   Card.create({name, link})
     .then(card => res.send(card))
-    .catch((err) => console.log(err))
-    //.catch(() => res.status(500).send({message: 'Произошла ошибка'}));
+    .catch(() => res.status(500).send({message: 'Произошла ошибка'}));
 };
 
 const getCards = (req, res) => {
@@ -17,13 +16,13 @@ const getCards = (req, res) => {
 
 const deleteCardById = (req, res) => {
   console.log(req.params.id)
-  Card.findById(req.params.id)
+  Card.findByIdAndRemove(req.params.id)
     .then((card) => {
       if (card) {
         res.send(card);
         return;
       }
-      res.status(404).send({message: "Нет такого пользoвателя"});
+      res.status(404).send({message: "Нет такого пользователя"});
     })
     .catch((err) => res
       .status(500)
