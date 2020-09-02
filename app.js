@@ -9,10 +9,6 @@ const cardRouter = require('./routes/cards');
 const {
   PORT = 3000,
 } = process.env;
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/cards/', cardRouter);
-app.use('/users/', userRouter);
 
 app.use((req, res, next) => {
   req.user = {
@@ -20,6 +16,11 @@ app.use((req, res, next) => {
   };
   next();
 });
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use('/cards/', cardRouter);
+app.use('/users/', userRouter);
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,

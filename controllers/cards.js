@@ -2,7 +2,7 @@ const Card = require('../models/card');
 
 const createCard = (req, res) => {
   const { name, link } = req.body;
-  Card.create({ name, link })
+  Card.create({ name, link, owner: req.user._id })
     .then((card) => res.send(card))
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -37,32 +37,8 @@ const deleteCardById = (req, res) => {
     });
 };
 
-
-const getCardById = (req, res) => {
-  Card.findById(req.params.id)
-    .then((card) => {
-      if (card) {
-        res.send(card);
-        return;
-      }
-      res.status(404).send({ message: 'Нет такого пользoвателя' });
-    })
-    .catch((err) => {
-      if (err.name === 'DocumentNotFoundError') {
-        res.status(404).send({ message: err.message });
-        return;
-      }
-      res.status(500).send({ message: 'На сервере произошла ошибка' });
-    });
-};
-
-module.exports.createCard = (req, res) => {
-  console.log(req.user._id); // _id станет доступен
-};
-
 module.exports = {
   createCard,
   getCards,
   deleteCardById,
-  getCardById,
 };
