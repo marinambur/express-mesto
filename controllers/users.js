@@ -1,44 +1,65 @@
-const User = require('../models/user');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+let User = require('../models/user');
+const BadRequestError = require('../errors/BadRequestError');
+const NotFoundError = require('../errors/NotFoundError');
+const TokenError = require('../errors/TokenError');
 
-const createUser = (req, res) => {
-  const { name, about, avatar } = req.body;
-  User.create({ name, about, avatar })
+module.exports.createUser = (req, res, next) => {  // хешируем пароль
+  bcrypt.hash(req.body.password, 10)
+    .then(hash => User.create({
+      email: req.body.email,
+      name: req.body.name,
+      about: req.body.about,
+      avatar: req.body.avatar,
+      password: hash,
+    }))
+
     .then((user) => res.send(user))
     .catch((err) => {
-      if (err.name === 'ValidationError') {
-        res.status(400).send({ message: err.message });
-        return;
-      }
-      res.status(500).send({ message: 'На сервере произошла ошибка' });
-    });
+      throw new BadRequestError({message: `Запрос некорректен: ${err.message}`});
+    })
+    .catch(next);
 };
 
-const getUsers = (req, res) => {
+
+module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((users) => res.send(users))
-    .catch(() => res.status(500).send({ message: 'Произошла ошибка' }));
+    .catch(next);
 };
 
-const getUserById = (req, res) => {
+module.exports.getUserById = (req, res, next) => {
   User.findById(req.params.id)
     .then((user) => {
       if (user) {
         res.send(user);
-        return;
+
       }
-      res.status(404).send({ message: 'Нет такого пользoвателя' });
+
     })
     .catch((err) => {
-      if (err.name === 'DocumentNotFoundError') {
-        res.status(404).send({ message: err.message });
-        return;
-      }
-      res.status(500).send({ message: 'На сервере произошла ошибка' });
-    });
+      throw new NotFoundError({message: `Пользователь с идентификатором ${err.message} не найден`});
+    })
+    .catch(next);
 };
 
-module.exports = {
-  createUser,
-  getUsers,
-  getUserById,
+
+module.exports.login = (req, res, next) => {
+  const {email, password} = req.body;
+
+  User.findUserByCredentials(email, password)
+    .then((user) => {
+      // создадим токен
+      const token = jwt.sign({_id: user._id}, 'some-secret-key', {expiresIn: '7d'});
+
+      // вернём токен
+      res.send({token});
+    })
+    .catch(() => {
+      throw new TokenError({message: `Пользователь с идентификатором ${req.body.email} не найден`});
+    })
+    .catch(next);
 };
+
+
